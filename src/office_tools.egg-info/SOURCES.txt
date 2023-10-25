@@ -1,0 +1,17 @@
+pyproject.toml
+src/office_tools/__init__.py
+src/office_tools/dde.py
+src/office_tools/doc_handler.py
+src/office_tools/email_handler.py
+src/office_tools/excel.py
+src/office_tools/file_management.py
+src/office_tools/merger.py
+src/office_tools/o_tool.py
+src/office_tools/pandas_stuff.py
+src/office_tools/sheet_handler.py
+src/office_tools/system_tools.py
+src/office_tools.egg-info/PKG-INFO
+src/office_tools.egg-info/SOURCES.txt
+src/office_tools.egg-info/dependency_links.txt
+src/office_tools.egg-info/requires.txt
+src/office_tools.egg-info/top_level.txt
