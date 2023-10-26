@@ -1,9 +1,7 @@
 from typing import Iterable
 
-import pandas as pd
 import win32com.client
 
-from ..cmc.cmc_entities import Connector
 from ..dflt import FIELDS
 
 
@@ -21,21 +19,21 @@ def get_all_fieldnames(conv, table, delim=';'):
 #     ans = conv.Request(f"[ViewFilter(1, F,,Name, Equal to, {name},)]")
 #     values = conv.Request(f"[ViewFields({table}, {name}, 2, )]")
 #     return values
-
-
-def get_data_df(conv, fields: Iterable[str]) -> pd.DataFrame:
-    rows_list = []
-    for field in fields:
-        try:
-            value = conv.Request(f"[ViewField(1, {field})]")
-            row_dict = {field: value}  # Create a dictionary for the single row
-            rows_list.append(row_dict)
-        except Exception as e:
-            raise ValueError(f"Error getting {field}: {e}")
-
-    df = pd.DataFrame(rows_list)  # Create DataFrame from list of dictionaries
-    return df
-
+#
+#
+# def get_data_df(conv, fields: Iterable[str]) -> pd.DataFrame:
+#     rows_list = []
+#     for field in fields:
+#         try:
+#             value = conv.Request(f"[ViewField(1, {field})]")
+#             row_dict = {field: value}  # Create a dictionary for the single row
+#             rows_list.append(row_dict)
+#         except Exception as e:
+#             raise ValueError(f"Error getting {field}: {e}")
+#
+#     df = pd.DataFrame(rows_list)  # Create DataFrame from list of dictionaries
+#     return df
+#
 
 def get_a_load(conv, table, name, fields: Iterable[str], delim=';'):
     values2 = conv.Request(f'GetFields({table}, {name}, {fields}, {delim}')

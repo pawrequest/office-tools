@@ -1,16 +1,14 @@
 import itertools
-import shutil
-from functools import lru_cache
 
 from .doc_handler import DocHandler, LibreHandler, WordHandler
+from .system_tools import check_word, check_excel, check_libre, check_outlook
 from .email_handler import EmailHandler, GmailSender, OutlookSender
-from .system_tools import check_registry
 
 
 class OfficeTools:
     def __init__(self, doc: DocHandler, email: EmailHandler):
-        self.doc = doc
-        self.email = email
+        self.doc: DocHandler = doc
+        self.email: EmailHandler = email
 
     @classmethod
     def microsoft(cls) -> 'OfficeTools':
@@ -37,26 +35,6 @@ def tools_available() -> bool:
     word = check_word()
     excel = check_excel()
     return all([(word or libre), (excel or libre)])
-
-
-@lru_cache(maxsize=None)
-def check_word() -> bool:
-    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WINWORD.EXE")
-
-
-@lru_cache(maxsize=None)
-def check_excel() -> bool:
-    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\EXCEL.EXE")
-
-
-@lru_cache(maxsize=None)
-def check_outlook() -> bool:
-    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\OUTLOOK.EXE")
-
-
-@lru_cache(maxsize=None)
-def check_libre() -> bool:
-    return shutil.which("soffice.exe") is not None
 
 
 def get_installed_combinations():

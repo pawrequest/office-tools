@@ -1,5 +1,6 @@
 import asyncio
 import os
+import shutil
 import winreg as reg
 from functools import lru_cache
 from pathlib import Path
@@ -31,3 +32,23 @@ def check_registry(reg_path: str) -> bool:
         return True
     except FileNotFoundError:
         return False
+
+
+@lru_cache(maxsize=None)
+def check_word() -> bool:
+    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WINWORD.EXE")
+
+
+@lru_cache(maxsize=None)
+def check_excel() -> bool:
+    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\EXCEL.EXE")
+
+
+@lru_cache(maxsize=None)
+def check_libre() -> bool:
+    return shutil.which("soffice.exe") is not None
+
+
+@lru_cache(maxsize=None)
+def check_outlook() -> bool:
+    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\OUTLOOK.EXE")

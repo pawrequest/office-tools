@@ -67,3 +67,5 @@ def gmail_compose_link(email: Email) -> str:
     body_encoded = email.body.replace(' ', '%20')
     compose_link = f"https://mail.google.com/mail/u/0/?view=cm&fs=1&to={to_encoded}&su={subject_encoded}&body={body_encoded}"
     return compose_link
+
+
