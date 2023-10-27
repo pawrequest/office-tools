@@ -1,7 +1,7 @@
 import itertools
 
 from .doc_handler import DocHandler, LibreHandler, WordHandler
-from .system_tools import check_word, check_excel, check_libre, check_outlook
+from .system_tools import check_word, check_excel, check_libre, check_outlook, check_lib2
 from .email_handler import EmailHandler, GmailSender, OutlookSender
 
 
@@ -43,7 +43,7 @@ def get_installed_combinations():
 
     if check_word():
         doc_handlers.append(WordHandler)
-    if check_libre():
+    if check_lib2():
         doc_handlers.append(LibreHandler)
 
     if check_outlook():

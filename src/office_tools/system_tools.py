@@ -24,7 +24,6 @@ async def wait_for_process(process):
     print("Process has finished.")
 
 
-@lru_cache(maxsize=None)
 def check_registry(reg_path: str) -> bool:
     try:
         key = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, reg_path)
@@ -34,21 +33,21 @@ def check_registry(reg_path: str) -> bool:
         return False
 
 
-@lru_cache(maxsize=None)
 def check_word() -> bool:
     return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WINWORD.EXE")
 
 
-@lru_cache(maxsize=None)
 def check_excel() -> bool:
     return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\EXCEL.EXE")
 
 
-@lru_cache(maxsize=None)
+def check_lib2() -> bool:
+    return check_registry("SOFTWARE\LibreOffice")
+
+
 def check_libre() -> bool:
     return shutil.which("soffice.exe") is not None
 
 
-@lru_cache(maxsize=None)
 def check_outlook() -> bool:
     return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\OUTLOOK.EXE")
