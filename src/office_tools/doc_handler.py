@@ -8,7 +8,7 @@ from comtypes.client import CreateObject
 from docx import Document
 from docx2pdf import convert as convert_word
 
-#
+
 class DocHandler(ABC):
     @abstractmethod
     def display_doc(self, doc_path: Path) -> Tuple[Any, Any]:
