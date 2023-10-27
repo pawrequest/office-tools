@@ -1,10 +1,9 @@
-import webbrowser
 import subprocess
+import webbrowser
 from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any, Tuple
 
-import requests as requests
 from comtypes.client import CreateObject
 from docx import Document
 from docx2pdf import convert as convert_word
@@ -75,7 +74,6 @@ class DocxHandler(DocHandler):
 
 
 import platform
-import os
 
 
 def get_libre_platform():
@@ -111,4 +109,3 @@ def direct_libre_dl():
     libre_version = '7.6.2'
     dl = f'https://download.documentfoundation.org/libreoffice/stable/{libre_version}/{libre_platform[0]}/{libre_platform[1]}/LibreOffice_{libre_version}_{libre_platform[2]}'
     return dl
-
