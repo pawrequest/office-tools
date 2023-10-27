@@ -11,9 +11,9 @@ jobs:
   test:
     name: Test
     runs-on: windows-latest
-    defaults:
-      run:
-        working-directory: ./src
+#    defaults:
+#      run:
+#        working-directory: ./src
     strategy:
       matrix:
         python-version: [ 3.11.2 ]
