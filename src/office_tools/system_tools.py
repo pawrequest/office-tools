@@ -42,11 +42,11 @@ def check_excel() -> bool:
 
 
 def check_lib2() -> bool:
-    return check_registry("SOFTWARE\LibreOffice")
+    return check_registry(r"SOFTWARE\LibreOffice")
 
 
 def check_libre() -> bool:
-    return shutil.which("soffice.exe") is not None
+    return shutil.which(r"soffice.exe") is not None
 
 
 def check_outlook() -> bool:
