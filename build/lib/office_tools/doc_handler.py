@@ -65,7 +65,7 @@ class LibreHandler(DocHandler):
 class DocxHandler(DocHandler):
     def open_document(self, doc_path: Path) -> Tuple[Any, Any]:
         try:
-            doc = Document(doc_path)
+            doc = Document(str(doc_path))
             return None, doc  # Returning None as there's no application object like in WordHandler
         except Exception as e:
             print(f"Failed to open {doc_path} with error: {e}")

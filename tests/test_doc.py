@@ -1,11 +1,10 @@
-from docx import Document
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import pytest
+from docx import Document  # type: ignore
 
-from src.office_tools.o_tool import OfficeTools, get_installed_combinations
-
+from src.office_tools.o_tool import get_installed_combinations
 
 
 @pytest.fixture
@@ -23,14 +22,8 @@ def temp_doc():
 
 @pytest.mark.parametrize("office_tool_instance", get_installed_combinations())
 def test_office_tools(office_tool_instance, temp_doc):
-
+    print(office_tool_instance)
     doc_handler = office_tool_instance.doc
     pdf_file = doc_handler.to_pdf(temp_doc)
     assert pdf_file.exists()
     ...
-
-
-
-
-
-

@@ -1,14 +1,12 @@
 from pathlib import Path
 from typing import Tuple
 
-import PySimpleGUI as sg
-from docxtpl import DocxTemplate
-
-from office_am import dflt
+import PySimpleGUI as sg # type: ignore
+from docxtpl import DocxTemplate # type: ignore
 
 
-def get_template_and_path(tmplt, context=None, temp_file=None) -> Tuple[DocxTemplate, Path]:
-    temp_file = temp_file or dflt.DFLT_PATHS.TEMP_DOC
+
+def get_template_and_path(tmplt, temp_file, context=None) -> Tuple[DocxTemplate, Path]:
     context = context or dict()
     template = DocxTemplate(tmplt)
     template.render(context)
