@@ -31,7 +31,7 @@ jobs:
           pip install -r ..\requirements-dev.txt
 
       - name: Type Checks
-        run : python -m mypy
+        run : python -m mypy .
 
       - name: Run tests
         run: python -B -m pytest
