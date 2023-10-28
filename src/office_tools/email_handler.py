@@ -24,7 +24,7 @@ class Email:
 
 
 class OutlookSender(EmailHandler):
-    def send_email(self, email: Email) -> bool:
+    def send_email(self, email: Email):
         try:
             outlook = Dispatch('outlook.application')
             mail = outlook.CreateItem(0)
@@ -38,7 +38,6 @@ class OutlookSender(EmailHandler):
             # mail.Display()
             # mail = None
             # mail.Send()
-            return True
         except com_error as e:
             msg = f"Outlook not installed - {e.args[0]}"
             print(msg)

@@ -4,9 +4,9 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any, Tuple
 
-from comtypes.client import CreateObject
-from docx import Document
-from docx2pdf import convert as convert_word
+from comtypes.client import CreateObject  # type: ignore
+from docx import Document  # type: ignore
+from docx2pdf import convert as convert_word  # type: ignore
 
 
 class DocHandler(ABC):
@@ -21,11 +21,11 @@ class DocHandler(ABC):
 
 class WordHandler(DocHandler):
     # todo use library
-    def display_doc(self, doc_path: Path) -> Tuple:
+    def display_doc(self, doc_path: Path) -> Tuple[Any, Any]:
         try:
             word = CreateObject('Word.Application')
             word.Visible = True
-            word_doc: word.Document = word.Documents.Open(str(doc_path))
+            word_doc = word.Documents.Open(str(doc_path))
             return word, word_doc
         except OSError as e:
             print(f"Is Word installed? Failed to open {doc_path} with error: {e}")
@@ -34,6 +34,7 @@ class WordHandler(DocHandler):
             raise e
 
     def to_pdf(self, doc_file: Path) -> Path:
+        # todo why is this here? does not require Word
         try:
             pdf_file = convert_word(doc_file, output_path=doc_file.parent)
             outfile = doc_file.with_suffix('.pdf')
@@ -59,8 +60,7 @@ class LibreHandler(DocHandler):
             return outfile
         except FileNotFoundError as e:
             print('Is LibreOffice installed?')
-        except Exception as e:
-            ...
+            raise FileNotFoundError('LibreOffice not installed')
 
 
 class DocxHandler(DocHandler):
