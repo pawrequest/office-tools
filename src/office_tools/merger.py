@@ -1,8 +1,8 @@
 from pathlib import Path
 from typing import Tuple
 
-import PySimpleGUI as sg # type: ignore
-from docxtpl import DocxTemplate # type: ignore
+import PySimpleGUI as sg
+from docxtpl import DocxTemplate
 
 
 
