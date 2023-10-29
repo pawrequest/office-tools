@@ -4,7 +4,8 @@ import shutil
 import winreg as reg
 from pathlib import Path
 
-#acomment
+
+# acomment
 def print_file(file_path: Path):
     try:
         os.startfile(str(file_path), "print")
@@ -33,11 +34,15 @@ def check_registry(reg_path: str) -> bool:
 
 
 def check_word() -> bool:
-    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WINWORD.EXE")
+    return check_registry(
+        r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WINWORD.EXE"
+    )
 
 
 def check_excel() -> bool:
-    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\EXCEL.EXE")
+    return check_registry(
+        r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\EXCEL.EXE"
+    )
 
 
 def check_lib2() -> bool:
@@ -49,4 +54,6 @@ def check_libre() -> bool:
 
 
 def check_outlook() -> bool:
-    return check_registry(r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\OUTLOOK.EXE")
+    return check_registry(
+        r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\OUTLOOK.EXE"
+    )

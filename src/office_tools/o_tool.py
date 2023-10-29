@@ -1,7 +1,13 @@
 import itertools
 
 from .doc_handler import DocHandler, LibreHandler, WordHandler
-from .system_tools import check_word, check_excel, check_libre, check_outlook, check_lib2
+from .system_tools import (
+    check_word,
+    check_excel,
+    check_libre,
+    check_outlook,
+    check_lib2,
+)
 from .email_handler import EmailHandler, GmailSender, OutlookSender
 
 
@@ -11,17 +17,17 @@ class OfficeTools:
         self.email: EmailHandler = email
 
     @classmethod
-    def microsoft(cls) -> 'OfficeTools':
+    def microsoft(cls) -> "OfficeTools":
         return cls(WordHandler(), OutlookSender())
 
     @classmethod
-    def libre(cls) -> 'OfficeTools':
+    def libre(cls) -> "OfficeTools":
         return cls(LibreHandler(), GmailSender())
 
     @classmethod
-    def auto_select(cls) -> 'OfficeTools':
+    def auto_select(cls) -> "OfficeTools":
         if not tools_available():
-            raise EnvironmentError("Neither Microsoft nor LibreOffice tools are installed")
+            raise OSError("Neither Microsoft nor LibreOffice tools are installed")
 
         doc_handler = WordHandler if check_word() else LibreHandler
         email_handler = OutlookSender if check_outlook() else GmailSender
@@ -30,7 +36,7 @@ class OfficeTools:
 
 
 def tools_available() -> bool:
-    """ Check if either Microsoft or LibreOffice tools for docs and sheets are installed"""
+    """Check if either Microsoft or LibreOffice tools for docs and sheets are installed"""
     libre = check_libre()
     word = check_word()
     excel = check_excel()
