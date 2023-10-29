@@ -2,7 +2,6 @@ import asyncio
 import os
 import shutil
 import winreg as reg
-from functools import lru_cache
 from pathlib import Path
 
 #acomment

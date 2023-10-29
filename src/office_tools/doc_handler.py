@@ -1,3 +1,4 @@
+import platform
 import subprocess
 import webbrowser
 from abc import ABC, abstractmethod
@@ -5,7 +6,6 @@ from pathlib import Path
 from typing import Any, Tuple
 
 from comtypes.client import CreateObject  # type: ignore
-from docx import Document  # type: ignore
 from docx2pdf import convert as convert_word  # type: ignore
 
 
@@ -35,7 +35,7 @@ class WordHandler(DocHandler):
 
     def to_pdf(self, doc_file: Path) -> Path:
         try:
-            pdf_file = convert_word(doc_file, output_path=doc_file.parent)
+            convert_word(doc_file, output_path=doc_file.parent)
             outfile = doc_file.with_suffix('.pdf')
             print(f"Converted {outfile}")
             return outfile
@@ -57,22 +57,9 @@ class LibreHandler(DocHandler):
             outfile = doc_file.with_suffix('.pdf')
             print(f"Converted {outfile}")
             return outfile
-        except FileNotFoundError as e:
+        except FileNotFoundError:
             print('Is LibreOffice installed?')
             raise FileNotFoundError('LibreOffice not installed')
-
-
-class DocxHandler(DocHandler):
-    def display_doc(self, doc_path: Path) -> Tuple[Any, Any]:
-        try:
-            doc = Document(str(doc_path))
-            return None, doc  # Returning None as there's no application object like in WordHandler
-        except Exception as e:
-            print(f"Failed to open {doc_path} with error: {e}")
-            raise e
-
-
-import platform
 
 
 def get_libre_platform():

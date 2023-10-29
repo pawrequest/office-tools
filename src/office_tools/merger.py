@@ -47,7 +47,7 @@ def templt_to_pdf(tmplt, context, doc_handler, temp_file):
         template.render(context)
         template.save(temp_file)
         pdf_file = doc_handler.to_pdf(temp_file)
-    except Exception as e:
+    except Exception:
         ...
     else:
         return pdf_file
