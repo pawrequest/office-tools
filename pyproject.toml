@@ -21,8 +21,18 @@ strict = true
 mypy_path = "stubs"
 
 [tool.ruff]
+line-length = 88
+fix = true
+show-fixes = true
+show-source = true
+src = ["src", "test"]
 
 [tool.ruff.lint]
 extend-select = [
   "UP",  # pyupgrade
+    "E",  # pycodestyle
+    "W",  # pycodestyle warnings
 ]
+
+[tool.ruff.format]
+quote-style = "single"

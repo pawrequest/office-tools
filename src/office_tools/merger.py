@@ -15,14 +15,14 @@ def get_template_and_path(tmplt, temp_file, context=None) -> Tuple[DocxTemplate,
             template.save(temp_file)
             return template, temp_file
         except Exception as e:
-            if sg.popup_ok_cancel("Close the template file and try again") == "OK":
+            if sg.popup_ok_cancel('Close the template file and try again') == 'OK':
                 continue
             else:
                 raise e
 
 
 def try_again():
-    return sg.popup_ok_cancel("Close the template file and try again")
+    return sg.popup_ok_cancel('Close the template file and try again')
 
 
 def get_template(tmplt, temp_file, context=None) -> DocxTemplate:
@@ -35,7 +35,7 @@ def get_template(tmplt, temp_file, context=None) -> DocxTemplate:
             return template
         except Exception as e:
             ans = try_again()
-            if ans == "OK":
+            if ans == 'OK':
                 continue
             raise e
 
