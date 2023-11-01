@@ -1,11 +1,8 @@
 Metadata-Version: 2.1
 Name: office-tools
 Version: 0.0.1
-Requires-Dist: docxtpl>=0.16.7
-Requires-Dist: pytest>=7.4.0
+Requires-Dist: docxtpl
 Requires-Dist: pywin32
-Requires-Dist: xlrd>=2.0.1
-Requires-Dist: openpyxl>=3.1.2
-Requires-Dist: docx2pdf>=0.1.8
-Requires-Dist: pandas>=2.1.1
-Requires-Dist: pysimplegui>=4.53.0
+Requires-Dist: openpyxl
+Requires-Dist: docx2pdf
+Requires-Dist: pysimplegui
